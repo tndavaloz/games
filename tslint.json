@@ -1,0 +1,28 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "__test__"
+    ]
+  },
+  "jsRules": {},
+  "rules": {
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
+    "object-literal-sort-keys": false,
+    "forin": false,
+    "prefer-for-of": false,
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "ordered-imports": false
+  },
+  "rulesDirectory": []
+}
