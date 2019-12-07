@@ -8,6 +8,9 @@
   "collectCoverageFrom": [
     "src/**/*.ts"
   ],
+  "coveragePathIgnorePatterns": [
+    "src/index.ts"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 92,
