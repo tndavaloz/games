@@ -8,7 +8,7 @@ export class GameResolver {
     this.service = service;
   }
 
-  public resolve(): Game[] {
-    return this.service.getGames();
+  public resolve(_: undefined, args: {[key: string]: string}): Game[] {
+    return this.service.getGames(args);
   }
 }

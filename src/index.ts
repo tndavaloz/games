@@ -7,7 +7,6 @@ const startServer = async (): Promise<void> => {
   const service = new GameService();
   const resolver = new GameResolver(service);
 
-  // Construct a schema, using GraphQL schema language
   const typeDefs = gql`
     type Game {
       title: String
@@ -18,15 +17,16 @@ const startServer = async (): Promise<void> => {
     }
 
     type Query {
-      games: [Game]!
+      games (
+        type_of_game: String
+      ): [Game]!
     }
   `;
 
-  // Provide resolver functions for your schema fields
   const resolvers = {
     Query: {
-      games() {
-        return resolver.resolve();
+      games(parent: undefined, args: any) {
+        return resolver.resolve(parent, args);
       },
     },
   };
