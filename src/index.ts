@@ -11,14 +11,15 @@ const startServer = async (): Promise<void> => {
     type Game {
       title: String
       release_year: Int
-      number_of_players: Int
+      numberOfPlayers: Int
       type: String
       console_name: String
     }
 
     type Query {
       games (
-        type_of_game: String
+        type: String
+        number_of_players: Int
       ): [Game]!
     }
   `;

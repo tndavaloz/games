@@ -8,8 +8,8 @@ export const transform = (data: Data): Game[] => {
       type: curr.type,
       title: curr.game,
       release_year: curr.year,
-      number_of_players: curr.players,
-      console_name: curr.system,
+      numberOfPlayers: curr.players,
+      consoleName: curr.system,
     };
     acc.push(game);
 
