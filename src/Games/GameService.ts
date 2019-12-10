@@ -6,6 +6,7 @@ export interface GameArguments {
   type?: string;
   numberOfPlayers?: number;
   releaseYear?: number;
+  title?: string;
  }
 
 export class GameService {
@@ -17,23 +18,118 @@ export class GameService {
     }
 
     return gamesObject.filter((game: Game) => {
-      if (args.type !== undefined && args.numberOfPlayers === undefined && args.releaseYear === undefined) {
+      if (
+        args.type !== undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear === undefined
+        && args.title === undefined
+        ) {
         return args.type === game.type;
-      } else if (args.type === undefined && args.numberOfPlayers !== undefined && args.releaseYear === undefined) {
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear === undefined
+        && args.title === undefined
+        ) {
         return args.numberOfPlayers === game.numberOfPlayers;
-      } else if (args.type === undefined && args.numberOfPlayers === undefined && args.releaseYear !== undefined) {
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear !== undefined
+        && args.title === undefined
+        ) {
         return args.releaseYear === game.releaseYear;
-      } else if (args.type !== undefined && args.numberOfPlayers !== undefined && args.releaseYear === undefined) {
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear === undefined
+        && args.title !== undefined
+      ) {
+        return args.title === game.title;
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear === undefined
+        && args.title === undefined
+        ) {
         return args.type === game.type && args.numberOfPlayers === game.numberOfPlayers;
-      } else if (args.type !== undefined && args.numberOfPlayers === undefined && args.releaseYear !== undefined) {
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear !== undefined
+        && args.title === undefined
+        ) {
         return args.type === game.type && args.releaseYear === game.releaseYear;
-      } else if (args.type === undefined && args.numberOfPlayers !== undefined && args.releaseYear !== undefined) {
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear !== undefined
+        && args.title === undefined
+        ) {
         return args.numberOfPlayers === game.numberOfPlayers && args.releaseYear === game.releaseYear;
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear === undefined
+        && args.title !== undefined
+      ) {
+        return args.type === game.type && args.title === game.title;
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear === undefined
+        && args.title !== undefined
+      ) {
+        return args.numberOfPlayers === game.numberOfPlayers && args.title === game.title;
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear !== undefined
+        && args.title !== undefined
+      ) {
+        return args.releaseYear === game.releaseYear && args.title === game.title;
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear !== undefined
+        && args.title === undefined
+      ) {
+        return args.type === game.type
+        && args.numberOfPlayers === game.numberOfPlayers
+        && args.releaseYear === game.releaseYear;
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear === undefined
+        && args.title !== undefined
+      ) {
+        return args.type === game.type
+          && args.numberOfPlayers === game.numberOfPlayers
+          && args.title === game.title;
+      } else if (
+        args.type !== undefined
+        && args.numberOfPlayers === undefined
+        && args.releaseYear !== undefined
+        && args.title !== undefined
+      ) {
+        return args.type === game.type
+          && args.releaseYear === game.releaseYear
+          && args.title === game.title;
+      } else if (
+        args.type === undefined
+        && args.numberOfPlayers !== undefined
+        && args.releaseYear !== undefined
+        && args.title !== undefined
+      ) {
+        return args.numberOfPlayers === game.numberOfPlayers
+          && args.releaseYear === game.releaseYear
+          && args.title === game.title;
       }
 
       return args.numberOfPlayers === game.numberOfPlayers
         && args.type === game.type
-        && args.releaseYear === game.releaseYear;
+        && args.releaseYear === game.releaseYear
+        && args.title === game.title;
     });
   }
 }

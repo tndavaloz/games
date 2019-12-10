@@ -643,3 +643,13 @@ export const SinglePlayerVideoGame2018Mock: Game[] = [
     consoleName: "Playstation 4",
   },
 ];
+
+export const SingleGameMock: Game[] = [
+  {
+    type: "video",
+    title: "Hollow Knight",
+    releaseYear: 2018,
+    numberOfPlayers: 1,
+    consoleName: "Switch",
+  },
+];
