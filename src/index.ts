@@ -1,7 +1,7 @@
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
 import { GameResolver } from "./Games/GameResolver";
-import { GameService } from "./Games/GameService";
+import { GameArguments, GameService } from "./Games/GameService";
 
 const startServer = async (): Promise<void> => {
   const service = new GameService();
@@ -10,7 +10,7 @@ const startServer = async (): Promise<void> => {
   const typeDefs = gql`
     type Game {
       title: String
-      release_year: Int
+      releaseYear: Int
       numberOfPlayers: Int
       type: String
       console_name: String
@@ -19,15 +19,16 @@ const startServer = async (): Promise<void> => {
     type Query {
       games (
         type: String
-        number_of_players: Int
+        numberOfPlayers: Int
+        releaseYear: Int
       ): [Game]!
     }
   `;
 
   const resolvers = {
     Query: {
-      games(parent: undefined, args: any) {
-        return resolver.resolve(parent, args);
+      games(_: undefined, args: GameArguments) {
+        return resolver.resolve(_, args);
       },
     },
   };

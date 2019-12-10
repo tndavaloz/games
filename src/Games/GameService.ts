@@ -2,28 +2,38 @@ import { Game } from "../Types/Game";
 import { games } from "../../data/games";
 import { transform } from "./transform";
 
-interface GameArguments {
+export interface GameArguments {
   type?: string;
-  number_of_players?: number;
+  numberOfPlayers?: number;
+  releaseYear?: number;
  }
 
 export class GameService {
   public getGames(args: GameArguments): Game[] {
-    const gamesObject = transform(games);
+    const gamesObject: Game[] = transform(games);
 
     if (Object.values(args).length === 0) {
-
       return gamesObject;
     }
 
-    return gamesObject.filter((game) => {
-      if (args.type !== undefined && args.number_of_players === undefined) {
+    return gamesObject.filter((game: Game) => {
+      if (args.type !== undefined && args.numberOfPlayers === undefined && args.releaseYear === undefined) {
         return args.type === game.type;
-      } else if (args.type === undefined && args.number_of_players !== undefined) {
-        return args.number_of_players === game.numberOfPlayers;
+      } else if (args.type === undefined && args.numberOfPlayers !== undefined && args.releaseYear === undefined) {
+        return args.numberOfPlayers === game.numberOfPlayers;
+      } else if (args.type === undefined && args.numberOfPlayers === undefined && args.releaseYear !== undefined) {
+        return args.releaseYear === game.releaseYear;
+      } else if (args.type !== undefined && args.numberOfPlayers !== undefined && args.releaseYear === undefined) {
+        return args.type === game.type && args.numberOfPlayers === game.numberOfPlayers;
+      } else if (args.type !== undefined && args.numberOfPlayers === undefined && args.releaseYear !== undefined) {
+        return args.type === game.type && args.releaseYear === game.releaseYear;
+      } else if (args.type === undefined && args.numberOfPlayers !== undefined && args.releaseYear !== undefined) {
+        return args.numberOfPlayers === game.numberOfPlayers && args.releaseYear === game.releaseYear;
       }
 
-      return args.number_of_players === game.numberOfPlayers && args.type === game.type;
+      return args.numberOfPlayers === game.numberOfPlayers
+        && args.type === game.type
+        && args.releaseYear === game.releaseYear;
     });
   }
 }

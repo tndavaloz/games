@@ -1,5 +1,5 @@
 import { Game } from "../Types/Game";
-import { GameService } from "./GameService";
+import { GameArguments, GameService } from "./GameService";
 
 export class GameResolver {
   private service: GameService;
@@ -8,7 +8,7 @@ export class GameResolver {
     this.service = service;
   }
 
-  public resolve(_: undefined, args: {[key: string]: string}): Game[] {
+  public resolve(_: undefined, args: GameArguments): Game[] {
     return this.service.getGames(args);
   }
 }
